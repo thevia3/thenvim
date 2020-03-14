@@ -57,6 +57,7 @@ syntax on
 
 " === Basic Mappings
 nnoremap ; :
+vnoremap ; :
 nnoremap s <nop>
 nnoremap Q :q<CR>
 nnoremap S :w<CR>
@@ -69,26 +70,24 @@ nnoremap <SPACE><SPACE>/ <ESC>/<++><CR>:nohlsearch<CR>c4l
 nnoremap <SPACE>fd /\(\<\w\+\>\)\_s*\1<CR>
 nnoremap sd <ESC>xi
 nnoremap <SPACE>o o<ESC>
-nnoremap <C-a> <HOME>
-nnoremap <C-e> <END>
+noremap <C-a> <HOME>
+noremap <C-e> <END>
 
 " === Insert Mode Cursor Movement
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-inoremap <C-j> <ESC>ja
-inoremap <C-k> <ESC>ki
-inoremap <C-w> <ESC>wi
-inoremap <C-b> <ESC>bi
-inoremap <C-a> <ESC><HOME>i
-inoremap <C-e> <ESC><END>a
+inoremap <M-h> <Left>
+inoremap <M-l> <Right>
+inoremap <M-j> <ESC>ja
+inoremap <M-k> <ESC>ki
+inoremap <M-w> <ESC>wi
+inoremap <M-b> <ESC>bi
+inoremap <M-a> <ESC><HOME>i
+inoremap <M-e> <ESC><END>a
 
 " === Command Mode Cursor Movement
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-k> <Up>
-cnoremap <C-j> <Down>
-cnoremap <C-h> <Left>
-cnoremap <C-l> <Right>
+cnoremap <M-k> <Up>
+cnoremap <M-j> <Down>
+cnoremap <M-h> <Left>
+cnoremap <M-l> <Right>
 cnoremap <M-b> <S-Left>
 cnoremap <M-w> <S-Right>
  
