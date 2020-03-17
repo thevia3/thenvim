@@ -60,7 +60,7 @@ nnoremap ; :
 vnoremap ; :
 nnoremap s <nop>
 nnoremap Q :q<CR>
-nnoremap S :w<CR>
+nnoremap S :w!<CR>
 nnoremap W :w %<CR>:source %<CR>
 nnoremap <SPACE>rc :e ~/.config/nvim/init.vim<CR>
 nnoremap <SPACE><CR> :nohlsearch<CR>
@@ -72,6 +72,8 @@ nnoremap sd <ESC>xi
 nnoremap <SPACE>o o<ESC>
 noremap <C-a> <HOME>
 noremap <C-e> <END>
+vnoremap <C-o> :norm 0i# <CR>
+vnoremap <C-i> :norm 02x<CR>
 
 " === Insert Mode Cursor Movement
 inoremap <M-h> <Left>
