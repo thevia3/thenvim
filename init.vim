@@ -254,11 +254,11 @@ let g:NERDTreeIndicatorMapCustom = {
 " === COC
 " ===
 let g:coc_global_extensions = [
-			\'coc-marketplace','coc-lists','coc-python', 
-			\'coc-vimlsp', 'coc-html', 'coc-json', 
-			\'coc-css', 'coc-git', 'coc-explorer',
-			\'coc-tsserver','coc-ultisnips','coc-snippets',
-			\'coc-actions','coc-spell-checker','coc-terminal',]
+	\'coc-marketplace','coc-lists','coc-python', 
+	\'coc-vimlsp', 'coc-html', 'coc-json', 
+	\'coc-css', 'coc-git', 'coc-explorer',
+	\'coc-tsserver','coc-ultisnips','coc-snippets',
+	\'coc-actions','coc-spell-checker','coc-terminal',]
 set hidden
 set nobackup
 set nowritebackup
