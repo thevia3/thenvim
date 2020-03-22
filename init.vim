@@ -64,7 +64,7 @@ nnoremap S :w!<CR>
 nnoremap W :w %<CR>:source %<CR>
 nnoremap <SPACE>rc :e ~/.config/nvim/init.vim<CR>
 nnoremap <SPACE><CR> :nohlsearch<CR>
-nnoremap <SPACE>sc :set spell!<CR>
+nnoremap <SPACE>sp :set spell!<CR>
 nnoremap tx :r !figlet 
 nnoremap <SPACE><SPACE>/ <ESC>/<++><CR>:nohlsearch<CR>c4l
 nnoremap <SPACE>fd /\(\<\w\+\>\)\_s*\1<CR>
@@ -123,7 +123,7 @@ noremap tml :+tabmove<CR>
 
 
 " === Other useful stuff
-noremap <SPACE>r :call CompileRunCommand()<CR>
+noremap <SPACE>R :call CompileRunCommand()<CR>
 func! CompileRunCommand()
 	exec "w"
 	if &filetyp  == 'c'
@@ -140,7 +140,7 @@ func! CompileRunCommand()
 		exec "!time java %<"
 	elseif &filetype == 'sh'
 		:!time bash %
-	elseif &filetype == 'python'
+	elseif &filetype == 'py'
 		set splitbelow
 		:sp
 		:term python3 %
@@ -258,6 +258,7 @@ let g:coc_global_extensions = [
 	\'coc-vimlsp', 'coc-html', 'coc-json', 
 	\'coc-css', 'coc-git', 'coc-explorer',
 	\'coc-tsserver','coc-ultisnips','coc-snippets',
+	\'coc-translator',
 	\'coc-actions','coc-spell-checker','coc-terminal',]
 set hidden
 set nobackup
@@ -363,8 +364,9 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" CocList Mapping
+" === Coc-List Mapping
 nnoremap <silent> <SPACE><SPACE>l  :<C-u>CocList<CR>
+nnoremap <silent> <SPACE><SPACE>t  :<C-u>CocList --normal translation<CR>
 nnoremap <silent> <space><space>g  :<C-u>CocList --normal gstatus<CR>
 nnoremap <silent> <SPACE><SPACE>m  :<C-u>CocList --normal marketplace<CR>
 nnoremap <silent> <SPACE><SPACE>a  :<C-u>CocList --normal diagnostics<CR>
@@ -376,7 +378,7 @@ nnoremap <silent> <SPACE><SPACE>j  :<C-u>CocNext<CR>
 nnoremap <silent> <SPACE><SPACE>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <SPACE><SPACE>p  :<C-u>CocListResume<CR>
 
-" Coc Explorer
+" === Coc-Explorer
 nnoremap <space>ee :CocCommand explorer<CR>
 nnoremap <space>ed :CocCommand explorer --preset .vim<CR>
 nnoremap <space>ef :CocCommand explorer --preset floating<CR>
@@ -402,3 +404,16 @@ let g:coc_explorer_global_presets = {
 \     'file.child.template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
 \   }
 \ }
+
+" === COC-Translation ===
+nnoremap <SPACE>th :<C-u>CocCommand translator.exportHistory<CR>
+" popup
+nnoremap <SPACE>tt :<C-u>CocCommand translator.popup<CR>
+vnoremap <SPACE>tt :<C-u>CocCommand translator.popup<CR>
+" echo
+nnoremap <SPACE>te :<C-u>CocCommand translator.echo<CR>
+vnoremap <SPACE>te :<C-u>CocCommand translator.echo<CR>
+" replace
+nnoremap <SPACE>tr :<C-u>CocCommand translator.replace<CR>
+vnoremap <SPACE>tr :<C-u>CocCommand translator.replace<CR>
+

@@ -107,5 +107,14 @@
 	"git.topRemovedSign.text": "▔",
 	"git.changeRemovedSign.text": "▒",
 	"git.enableGlobalStatus": false,
-	"git.signOffset": 2
+	"git.signOffset": 2,
+	
+	"translator.toLang":"zh",
+	"translator.maxsize": 5000,
+	"translator.engines": [
+		"bing",
+		"ciba"
+	],
+	"translator.window.maxWidth": 0.6*&columns,
+	"translator.window.maxHeight": 0.6*&lines
 }
