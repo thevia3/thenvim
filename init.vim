@@ -126,7 +126,7 @@ noremap tml :+tabmove<CR>
 noremap <SPACE>R :call CompileRunCommand()<CR>
 func! CompileRunCommand()
 	exec "w"
-	if &filetyp  == 'c'
+	if &filetype == 'c'
 		exec "!g++ % -o %<"
 		exec "!time ./%<"
 	elseif &filetype == 'cpp'
@@ -141,9 +141,10 @@ func! CompileRunCommand()
 	elseif &filetype == 'sh'
 		:!time bash %
 	elseif &filetype == 'py'
-		set splitbelow
-		:sp
-		:term python3 %
+		:!python3 %
+"		set splitbelow
+"		:sp
+"		:term python %
 	elseif &filetype == 'html'
 		silent! exec "!".g:mkdp_browser." % &"
 	elseif &filetype == 'markdown'

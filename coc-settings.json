@@ -114,7 +114,5 @@
 	"translator.engines": [
 		"bing",
 		"ciba"
-	],
-	"translator.window.maxWidth": 0.6*&columns,
-	"translator.window.maxHeight": 0.6*&lines
+	]
 }
