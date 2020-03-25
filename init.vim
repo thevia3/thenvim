@@ -4,6 +4,7 @@
 "| | | | | | |_| | | | \ V /| | | | | | | | | (__ 
 "|_| |_| |_|\__, |_| |_|\_/ |_|_| |_| |_|_|  \___|
            "|___/                                 
+
 set number
 set relativenumber
 set nocompatible
@@ -252,6 +253,24 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 " ===
+" === VIMWIKI
+" ===
+" let g:vimwiki_list="~/vimwiki/index.wiki"
+nnoremap <SPACE>vw :<C-u>VimwikiIndex<CR>
+nnoremap <SPACE>vv :<C-u>VimwikiTabIndex<CR>
+nnoremap <SPACE>vs :<C-u>VimwikiUISelect<CR>
+nnoremap <SPACE>vd :<C-u>VimwikiDiaryIndex<CR>
+nnoremap <SPACE>vn :<C-u>VimwikiMakeDiaryNote<CR>
+nnoremap <SPACE>vt :<C-u>VimwikiTabMakeDiaryNote<CR>
+nnoremap <SPACE>vy :<C-u>VimwikiMakeYesterdayDiaryNote<CR>
+nnoremap <SPACE>vo :<C-u>VimwikiMakeTomorrowDiaryNote<CR>
+" Local noremapping
+nnoremap <silent><buffer> <SPACE>vh :<C-u>Vimwiki2HTML<CR>
+nnoremap <SPACE>va <Plug>VimwikiToggleListItem
+vnoremap <SPACE>va :VimwikiToggleListItem<CR>
+
+
+" ===
 " === COC
 " ===
 let g:coc_global_extensions = [
@@ -259,7 +278,7 @@ let g:coc_global_extensions = [
 	\'coc-vimlsp', 'coc-html', 'coc-json', 
 	\'coc-css', 'coc-git', 'coc-explorer',
 	\'coc-tsserver','coc-ultisnips','coc-snippets',
-	\'coc-translator',
+	\'coc-translator','coc-actions',
 	\'coc-actions','coc-spell-checker','coc-terminal',]
 set hidden
 set nobackup
@@ -365,7 +384,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" === Coc-List Mapping
+" === Coc-List ===
 nnoremap <silent> <SPACE><SPACE>l  :<C-u>CocList<CR>
 nnoremap <silent> <SPACE><SPACE>t  :<C-u>CocList --normal translation<CR>
 nnoremap <silent> <space><space>g  :<C-u>CocList --normal gstatus<CR>
@@ -379,7 +398,7 @@ nnoremap <silent> <SPACE><SPACE>j  :<C-u>CocNext<CR>
 nnoremap <silent> <SPACE><SPACE>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <SPACE><SPACE>p  :<C-u>CocListResume<CR>
 
-" === Coc-Explorer
+" === Coc-Explorer ===
 nnoremap <space>ee :CocCommand explorer<CR>
 nnoremap <space>ed :CocCommand explorer --preset .vim<CR>
 nnoremap <space>ef :CocCommand explorer --preset floating<CR>
@@ -418,3 +437,12 @@ vnoremap <SPACE>te :<C-u>CocCommand translator.echo<CR>
 nnoremap <SPACE>tr :<C-u>CocCommand translator.replace<CR>
 vnoremap <SPACE>tr :<C-u>CocCommand translator.replace<CR>
 
+" Coc-Actions ===
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <SPACE>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <SPACE>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+/* cspell:enableCompoundWords */
+/* cSpell:ignore noinsert mkdp Ultisnips honza Xuyuanp neoclide angr cocstatus expl gstatus funcobj mygroup Untracked ulti sqnips */
