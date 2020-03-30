@@ -4,7 +4,6 @@
 "| | | | | | |_| | | | \ V /| | | | | | | | | (__ 
 "|_| |_| |_|\__, |_| |_|\_/ |_|_| |_| |_|_|  \___|
            "|___/                                 
-
 set number
 set relativenumber
 set nocompatible
@@ -58,6 +57,7 @@ syntax on
 
 " === Basic Mappings
 nnoremap ; :
+nnoremap : ;
 vnoremap ; :
 nnoremap s <nop>
 nnoremap Q :q<CR>
@@ -165,7 +165,7 @@ endfunc
 
 call plug#begin("$HOME/.config/nvim/plugged")
 
-" Pretty Dress
+" === Pretty Dress
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'connorholyday/vim-snazzy'
@@ -174,18 +174,31 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'bling/vim-bufferline'
 Plug 'dracula/vim', { 'as': 'dracula' }
 
-" Ultisnips and vim-snippets
+" === Vim oprator and motion
+Plug 'tpope/vim-commentary'
+Plug 'kana/vim-textobj-user'
+Plug 'bps/vim-textobj-python'
+Plug 'libclang-vim/vim-textobj-clang'
+Plug 'jasonlong/vim-textobj-css'
+Plug 'kana/vim-textobj-help'
+Plug 'rbonvall/vim-textobj-latex'
+Plug 'coachshea/vim-textobj-markdown'
+
+" === Ultisnips and vim-snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-" NERDTree
+" === NERDTree
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" Vimwiki
+" === Vimwiki
 Plug 'vimwiki/vimwiki'
 
-" Auto Complete
+" === Rnvimr
+Plug 'kevinhwang91/rnvimr'
+
+" === Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
@@ -271,6 +284,14 @@ vnoremap <SPACE>va :VimwikiToggleListItem<CR>
 
 
 " ===
+" === Rnvimr
+" ===
+tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
+nnoremap <silent> <M-o> :RnvimrToggle<CR>
+tnoremap <silent> <M-o> <C-\><C-n>:RnvimrToggle<CR>
+
+
+" ===
 " === COC
 " ===
 let g:coc_global_extensions = [
@@ -280,6 +301,10 @@ let g:coc_global_extensions = [
 	\'coc-tsserver','coc-ultisnips','coc-snippets',
 	\'coc-translator','coc-actions',
 	\'coc-actions','coc-spell-checker','coc-terminal',]
+
+augroup nvimrc
+	autocmd! FileType .vim execute CocDisable coc-spell-checker
+augroup END
 set hidden
 set nobackup
 set nowritebackup
@@ -318,7 +343,6 @@ nnoremap <silent> gy <Plug>(coc-type-definition)
 nnoremap <silent> gi <Plug>(coc-implementation)
 nnoremap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -444,5 +468,5 @@ endfunction
 xmap <silent> <SPACE>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <SPACE>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
-/* cspell:enableCompoundWords */
-/* cSpell:ignore noinsert mkdp Ultisnips honza Xuyuanp neoclide angr cocstatus expl gstatus funcobj mygroup Untracked ulti sqnips */
+" /* cspell:enableCompoundWords */
+" /* cSpell:ignore noinsert mkdp Ultisnips honza Xuyuanp neoclide angr cocstatus expl gstatus funcobj mygroup Untracked ulti sqnips */
