@@ -33,6 +33,7 @@ set noshowmode
 set showcmd
 set wildmenu
 set ignorecase
+set history=500
 set smartcase
 set inccommand=split
 set completeopt=longest,noinsert,menuone,noselect,preview
@@ -59,7 +60,8 @@ syntax on
 nnoremap ; :
 nnoremap : ;
 vnoremap ; :
-nnoremap s <nop>
+nnoremap ss s
+nnoremap <C-s> S
 nnoremap Q :q<CR>
 nnoremap S :w!<CR>
 nnoremap W :w %<CR>:source %<CR>
@@ -73,8 +75,6 @@ nnoremap sd <ESC>xi
 nnoremap <SPACE>o o<ESC>
 noremap <C-a> <HOME>
 noremap <C-e> <END>
-vnoremap <C-o> :norm 0i# <CR>
-vnoremap <C-i> :norm 02x<CR>
 
 " === Insert Mode Cursor Movement
 inoremap <M-h> <Left>
@@ -95,33 +95,37 @@ cnoremap <M-b> <S-Left>
 cnoremap <M-w> <S-Right>
  
 " === Window management
-noremap <SPACE>w <C-w>w
-noremap <SPACE>k <C-w>k
-noremap <SPACE>j <C-w>j
-noremap <SPACE>h <C-w>h
-noremap <SPACE>l <C-w>l
-noremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-noremap sj :set splitbelow<CR>:split<CR>
-noremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-noremap sl :set splitright<CR>:vsplit<CR>
-noremap <up> :res +5<CR>
-noremap <down> :res -5<CR>
-noremap <left> :vertical resize-5<CR>
-noremap <right> :vertical resize+5<CR>
-noremap st <C-w>t<C-w>K
-noremap sv <C-w>t<C-w>H
-noremap srh <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
+nnoremap <SPACE>w <C-w>w
+nnoremap <SPACE>k <C-w>k
+nnoremap <SPACE>j <C-w>j
+nnoremap <SPACE>h <C-w>h
+nnoremap <SPACE>l <C-w>l
+nnoremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+nnoremap sj :set splitbelow<CR>:split<CR>
+nnoremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+nnoremap sl :set splitright<CR>:vsplit<CR>
+nnoremap <up> :res +5<CR>
+nnoremap <down> :res -5<CR>
+nnoremap <left> :vertical resize-5<CR>
+nnoremap <right> :vertical resize+5<CR>
+nnoremap st <C-w>t<C-w>K
+nnoremap sv <C-w>t<C-w>H
+nnoremap srh <C-w>b<C-w>K
+nnoremap srv <C-w>b<C-w>H
 " Press <SPACE> + q to close the window below the current window
-noremap <SPACE>q <C-w>j:q<CR>
+nnoremap <SPACE>q <C-w>j:q<CR>
  
-" === Tab management
-noremap tu :tabe<CR>
-noremap th :-tabnext<CR>
-noremap tl :+tabnext<CR>
-noremap tmh :-tabmove<CR>
-noremap tml :+tabmove<CR>
-
+" === Tab and buffer management
+nnoremap tu :tabe<CR>
+nnoremap th :-tabnext<CR>
+nnoremap tl :+tabnext<CR>
+nnoremap tmh :-tabmove<CR>
+nnoremap tml :+tabmove<CR>
+nnoremap tbl :ls!<CR>
+nnoremap tn :bn<CR>
+nnoremap tp :bN<CR>
+nnoremap tbd :bd<CR>
+nnoremap ta :args<CR>
 
 " === Other useful stuff
 noremap <SPACE>R :call CompileRunCommand()<CR>
@@ -286,9 +290,32 @@ vnoremap <SPACE>va :VimwikiToggleListItem<CR>
 " ===
 " === Rnvimr
 " ===
-tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
 nnoremap <silent> <M-o> :RnvimrToggle<CR>
 tnoremap <silent> <M-o> <C-\><C-n>:RnvimrToggle<CR>
+tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
+tnoremap <silent> <M-l> <C-\><C-n>:RnvimrResize 1,8,9,13,11,5<CR>
+tnoremap <silent> <M-y> <C-\><C-n>:RnvimrResize 6<CR>
+let g:rnvimr_layout = { 'relative': 'editor',
+            \ 'width': float2nr(round(0.5 * &columns)),
+            \ 'height': float2nr(round(0.5 * &lines)),
+            \ 'col': float2nr(round(0.25 * &columns)),
+            \ 'row': float2nr(round(0.25 * &lines)),
+            \ 'style': 'minimal' }
+let g:rnvimr_presets = [
+            \ {'width': 0.250, 'height': 0.250},
+            \ {'width': 0.333, 'height': 0.333},
+            \ {},
+            \ {'width': 0.666, 'height': 0.666},
+            \ {'width': 0.750, 'height': 0.750},
+            \ {'width': 0.900, 'height': 0.900},
+            \ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0},
+            \ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0.5},
+            \ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0},
+            \ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0.5},
+            \ {'width': 0.500, 'height': 1.000, 'col': 0, 'row': 0},
+            \ {'width': 0.500, 'height': 1.000, 'col': 0.5, 'row': 0},
+            \ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0},
+            \ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0.5}]
 
 
 " ===
@@ -451,13 +478,10 @@ let g:coc_explorer_global_presets = {
 
 " === COC-Translation ===
 nnoremap <SPACE>th :<C-u>CocCommand translator.exportHistory<CR>
-" popup
 nnoremap <SPACE>tt :<C-u>CocCommand translator.popup<CR>
 vnoremap <SPACE>tt :<C-u>CocCommand translator.popup<CR>
-" echo
 nnoremap <SPACE>te :<C-u>CocCommand translator.echo<CR>
 vnoremap <SPACE>te :<C-u>CocCommand translator.echo<CR>
-" replace
 nnoremap <SPACE>tr :<C-u>CocCommand translator.replace<CR>
 vnoremap <SPACE>tr :<C-u>CocCommand translator.replace<CR>
 
@@ -468,5 +492,3 @@ endfunction
 xmap <silent> <SPACE>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <SPACE>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
-" /* cspell:enableCompoundWords */
-" /* cSpell:ignore noinsert mkdp Ultisnips honza Xuyuanp neoclide angr cocstatus expl gstatus funcobj mygroup Untracked ulti sqnips */
