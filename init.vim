@@ -40,6 +40,13 @@ set completeopt=longest,noinsert,menuone,noselect,preview
 "set ttyfast "should make scrolling faster
 set lazyredraw "same as above
 set visualbell
+set colorcolumn=80
+set virtualedit=block
+filetype plugin indent on
+filetype indent on
+syntax enable
+syntax on
+set path+='~/.config/**,~/termux/**'
 silent !mkdir -p ~/.config/nvim/tmp/backup
 silent !mkdir -p ~/.config/nvim/tmp/undo
 silent !mkdir -p ~/.config/nvim/tmp/sessions
@@ -49,12 +56,6 @@ if has('persistent_undo')
 	set undofile
 	set undodir=~/.config/nvim/tmp/undo,.
 endif
-set colorcolumn=80
-set virtualedit=block
-filetype plugin indent on
-filetype indent on
-syntax enable
-syntax on
 
 " === Basic Mappings
 nnoremap ; :
@@ -75,27 +76,27 @@ nnoremap sd <ESC>xi
 nnoremap <SPACE>o o<ESC>
 noremap <C-a> <HOME>
 noremap <C-e> <END>
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " === Insert Mode Cursor Movement
-inoremap <M-h> <Left>
-inoremap <M-l> <Right>
+inoremap <M-h> <LEFT>
+inoremap <M-l> <RIGHT>
 inoremap <M-j> <ESC>ja
 inoremap <M-k> <ESC>ki
-inoremap <M-w> <ESC>wi
-inoremap <M-b> <ESC>bi
+inoremap <M-w> <S-RIGHT>
+inoremap <M-b> <S-LEFT>
 inoremap <M-a> <ESC><HOME>i
 inoremap <M-e> <ESC><END>a
 
 " === Command Mode Cursor Movement
-cnoremap <M-k> <Up>
-cnoremap <M-j> <Down>
-cnoremap <M-h> <Left>
-cnoremap <M-l> <Right>
-cnoremap <M-b> <S-Left>
-cnoremap <M-w> <S-Right>
+cnoremap <M-k> <UP>
+cnoremap <M-j> <DOWN>
+cnoremap <M-h> <LEFT>
+cnoremap <M-l> <RIGHT>
+cnoremap <M-b> <S-LEFT>
+cnoremap <M-w> <S-RIGHT>
  
 " === Window management
-nnoremap <SPACE>w <C-w>w
 nnoremap <SPACE>k <C-w>k
 nnoremap <SPACE>j <C-w>j
 nnoremap <SPACE>h <C-w>h
@@ -112,20 +113,21 @@ nnoremap st <C-w>t<C-w>K
 nnoremap sv <C-w>t<C-w>H
 nnoremap srh <C-w>b<C-w>K
 nnoremap srv <C-w>b<C-w>H
-" Press <SPACE> + q to close the window below the current window
 nnoremap <SPACE>q <C-w>j:q<CR>
+nnoremap sn <C-w>T
  
-" === Tab and buffer management
+" === Tab and management
 nnoremap tu :tabe<CR>
 nnoremap th :-tabnext<CR>
 nnoremap tl :+tabnext<CR>
 nnoremap tmh :-tabmove<CR>
 nnoremap tml :+tabmove<CR>
+
+" === Buffer management
 nnoremap tbl :ls!<CR>
 nnoremap tn :bn<CR>
 nnoremap tp :bN<CR>
-nnoremap tbd :bd<CR>
-nnoremap ta :args<CR>
+nnoremap td :bd<CR>
 
 " === Other useful stuff
 noremap <SPACE>R :call CompileRunCommand()<CR>
@@ -329,9 +331,9 @@ let g:coc_global_extensions = [
 	\'coc-translator','coc-actions',
 	\'coc-actions','coc-spell-checker','coc-terminal',]
 
-augroup nvimrc
-	autocmd! FileType .vim execute CocDisable coc-spell-checker
-augroup END
+" augroup nvimrc
+" 	autocmd! FileType .vim execute CocDisable coc-spell-checker
+" augroup END
 set hidden
 set nobackup
 set nowritebackup
