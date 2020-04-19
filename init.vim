@@ -125,6 +125,7 @@ nnoremap tml :+tabmove<CR>
 
 " === Buffer management
 nnoremap tbl :ls!<CR>
+nnoremap tbp :buffers<CR>
 nnoremap tn :bn<CR>
 nnoremap tp :bN<CR>
 nnoremap td :bd<CR>
@@ -183,12 +184,15 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 " === Vim oprator and motion
 Plug 'tpope/vim-commentary'
 Plug 'kana/vim-textobj-user'
-Plug 'bps/vim-textobj-python'
+Plug 'bps/vim-textobj-python', {'for' : 'python'}
 Plug 'libclang-vim/vim-textobj-clang'
-Plug 'jasonlong/vim-textobj-css'
+Plug 'jasonlong/vim-textobj-css', {'for' : 'css'}
 Plug 'kana/vim-textobj-help'
-Plug 'rbonvall/vim-textobj-latex'
-Plug 'coachshea/vim-textobj-markdown'
+Plug 'rbonvall/vim-textobj-latex', {'for' : 'latex'}
+
+" === Markdown
+Plug 'mzlogin/vim-markdown-toc', {'for' : 'markdown'}
+Plug 'coachshea/vim-textobj-markdown', {'for' : 'markdown'}
 
 " === Ultisnips and vim-snippets
 Plug 'SirVer/ultisnips'
@@ -206,6 +210,10 @@ Plug 'kevinhwang91/rnvimr'
 
 " === Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" === Other
+Plug 'rhysd/clever-f.vim'
+Plug 'jwarby/antovim'
 
 call plug#end()
 
@@ -321,6 +329,19 @@ let g:rnvimr_presets = [
 
 
 " ===
+" === OTHER
+" ===
+" antovim--replace the cursor
+" let g:antovim_definitions = extend(g:antovim_definitions, [['TRUE','FALSE','YES', 'NO' ]])
+autocmd FileType javascript let g:custom_antovim_definitions = [
+  \   ['this', 'that']
+  \ ]
+nnoremap <SPACE>p :Antovim<CR>
+" clever-f
+let g:clever_f_ignore_case=1
+
+
+" ===
 " === COC
 " ===
 let g:coc_global_extensions = [
@@ -331,9 +352,6 @@ let g:coc_global_extensions = [
 	\'coc-translator','coc-actions',
 	\'coc-actions','coc-spell-checker','coc-terminal',]
 
-" augroup nvimrc
-" 	autocmd! FileType .vim execute CocDisable coc-spell-checker
-" augroup END
 set hidden
 set nobackup
 set nowritebackup
@@ -386,7 +404,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nnoremap <leader>rn <Plug>(coc-rename)
+nnoremap <SPACE>rn <Plug>(coc-rename)
 
 " Formatting selected code.
 xnoremap <leader>f  <Plug>(coc-format-selected)
@@ -447,8 +465,6 @@ nnoremap <silent> <SPACE><SPACE>e  :<C-u>CocList --normal extensions<CR>
 nnoremap <silent> <SPACE><SPACE>c  :<C-u>CocList --normal commands<CR>
 nnoremap <silent> <SPACE><SPACE>o  :<C-u>CocList --normal outline<CR>
 nnoremap <silent> <SPACE><SPACE>s  :<C-u>CocList --normal -I symbols<CR>
-nnoremap <silent> <SPACE><SPACE>j  :<C-u>CocNext<CR>
-nnoremap <silent> <SPACE><SPACE>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <SPACE><SPACE>p  :<C-u>CocListResume<CR>
 
 " === Coc-Explorer ===
@@ -481,11 +497,11 @@ let g:coc_explorer_global_presets = {
 " === COC-Translation ===
 nnoremap <SPACE>th :<C-u>CocCommand translator.exportHistory<CR>
 nnoremap <SPACE>tt :<C-u>CocCommand translator.popup<CR>
-vnoremap <SPACE>tt :<C-u>CocCommand translator.popup<CR>
+vnoremap <SPACE>tt :normal CocCommand translator.popup<CR>
 nnoremap <SPACE>te :<C-u>CocCommand translator.echo<CR>
-vnoremap <SPACE>te :<C-u>CocCommand translator.echo<CR>
+vnoremap <SPACE>te :normal CcCommand translator.echo<CR>
 nnoremap <SPACE>tr :<C-u>CocCommand translator.replace<CR>
-vnoremap <SPACE>tr :<C-u>CocCommand translator.replace<CR>
+vnoremap <SPACE>tr :normal CocCommand translator.replace<CR>
 
 " Coc-Actions ===
 function! s:cocActionsOpenFromSelected(type) abort

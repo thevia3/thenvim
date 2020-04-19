@@ -62,6 +62,8 @@
 		"t": "action:tabe",
 		"v": "action:vsplit",
 		"s": "action:split",
+		"o": "action:doc",
+		"p": "action:preview",
 		"d": "expr:GetDeleteAction"
 	},
 	"list.insertMappings": {
