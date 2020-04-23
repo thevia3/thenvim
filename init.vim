@@ -214,6 +214,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " === Other
 Plug 'rhysd/clever-f.vim'
 Plug 'jwarby/antovim'
+Plug 'RRethy/vim-hexokinase'
+Plug 'lervag/vimtex' , {'for': ['latex','tex']}
 
 call plug#end()
 
@@ -221,12 +223,17 @@ call plug#end()
 " ===
 " === Dress up my vim
 " ===
+map <SPACE>ca :set background=light<CR>:colorscheme ayu<CR>:AirlineTheme angr<CR>
+map <SPACE>ck :set background=light<CR>:colorscheme koelher<CR>:AirlineTheme angr<CR>
 map <SPACE>cd :set background=dark<CR>:colorscheme dracula<CR>:AirlineTheme angr<CR>
 map <SPACE>cl :set background=light<CR>:colorscheme peachpuff<CR>:AirlineTheme papercolor<CR>
+map <SPACE>cs :set background=dark<CR>:colorscheme snazzy<CR>:AirlineTheme papercolor<CR>
+map <SPACE>cz :set background=light<CR>:colorscheme zellner<CR>:AirlineTheme papercolor<CR>
 
+set background=dark
 colorscheme dracula
-set background=light
-let g:airline_theme='dracula'
+AirlineTheme solarized_flood
+" let g:airline_theme='dracula'
 
 "let g:lightline = {
  ""\     'active': {
@@ -339,6 +346,12 @@ autocmd FileType javascript let g:custom_antovim_definitions = [
 nnoremap <SPACE>p :Antovim<CR>
 " clever-f
 let g:clever_f_ignore_case=1
+
+
+" ===
+" === vim-hecokinase
+" ===
+" let g:Hexokinase_highlighters = [ 'virtual' ]
 
 
 " ===
