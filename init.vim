@@ -223,16 +223,16 @@ call plug#end()
 " ===
 " === Dress up my vim
 " ===
-map <SPACE>ca :set background=light<CR>:colorscheme ayu<CR>:AirlineTheme angr<CR>
-map <SPACE>ck :set background=light<CR>:colorscheme koelher<CR>:AirlineTheme angr<CR>
-map <SPACE>cd :set background=dark<CR>:colorscheme dracula<CR>:AirlineTheme angr<CR>
-map <SPACE>cl :set background=light<CR>:colorscheme peachpuff<CR>:AirlineTheme papercolor<CR>
-map <SPACE>cs :set background=dark<CR>:colorscheme snazzy<CR>:AirlineTheme papercolor<CR>
-map <SPACE>cz :set background=light<CR>:colorscheme zellner<CR>:AirlineTheme papercolor<CR>
+nnoremap <SPACE>ca :set background=light<CR>:colorscheme ayu<CR>:AirlineTheme dracula<CR>
+nnoremap <SPACE>ck :set background=light<CR>:colorscheme koelher<CR>:AirlineTheme dracula<CR>
+nnoremap <SPACE>cd :set background=dark<CR>:colorscheme dracula<CR>:AirlineTheme dracula<CR>
+nnoremap <SPACE>cl :set background=light<CR>:colorscheme peachpuff<CR>:AirlineTheme papercolor<CR>
+nnoremap <SPACE>cs :set background=dark<CR>:colorscheme snazzy<CR>:AirlineTheme papercolor<CR>
+nnoremap <SPACE>cz :set background=light<CR>:colorscheme zellner<CR>:AirlineTheme papercolor<CR>
 
 set background=dark
 colorscheme dracula
-AirlineTheme solarized_flood
+let g:airline_theme='solarized_flood'
 " let g:airline_theme='dracula'
 
 "let g:lightline = {
