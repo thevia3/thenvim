@@ -214,7 +214,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " === Other
 Plug 'rhysd/clever-f.vim'
 Plug 'jwarby/antovim'
-Plug 'RRethy/vim-hexokinase'
+" Plug 'RRethy/vim-hexokinase'
 Plug 'lervag/vimtex' , {'for': ['latex','tex']}
 
 call plug#end()
@@ -223,35 +223,16 @@ call plug#end()
 " ===
 " === Dress up my vim
 " ===
-nnoremap <SPACE>ca :set background=light<CR>:colorscheme ayu<CR>:AirlineTheme dracula<CR>
-nnoremap <SPACE>ck :set background=light<CR>:colorscheme koelher<CR>:AirlineTheme dracula<CR>
 nnoremap <SPACE>cd :set background=dark<CR>:colorscheme dracula<CR>:AirlineTheme dracula<CR>
 nnoremap <SPACE>cl :set background=light<CR>:colorscheme peachpuff<CR>:AirlineTheme papercolor<CR>
 nnoremap <SPACE>cs :set background=dark<CR>:colorscheme snazzy<CR>:AirlineTheme papercolor<CR>
-nnoremap <SPACE>cz :set background=light<CR>:colorscheme zellner<CR>:AirlineTheme papercolor<CR>
+nnoremap <SPACE>cz :set background=light<CR>:colorscheme zellner<CR>:AirlineTheme xtermlight<CR>
 
+nnoremap <SPACE>cc :set background=dark<CR>:colorscheme dracula<CR>:AirlineTheme solarized_flood<CR>
 set background=dark
 colorscheme dracula
 let g:airline_theme='solarized_flood'
 " let g:airline_theme='dracula'
-
-"let g:lightline = {
- ""\     'active': {
- ""\         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
- ""\         'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
- ""\     }
- ""\ }
-
-"  let g:lightline = {
-"	\ 'colorscheme': 'wombat',
-"	\ 'active': {
-"	\   'left': [ [ 'mode', 'paste' ],
-"	\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-"	\ },
-"	\ 'component_function': {
-"	\   'cocstatus': 'coc#status'
-"	\ },
-"	\ }
 
 
 " ===
