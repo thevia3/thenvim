@@ -71,6 +71,7 @@ nnoremap <SPACE><CR> :nohlsearch<CR>
 nnoremap <SPACE>sp :set spell!<CR>
 nnoremap tx :r !figlet 
 nnoremap ty :r !cowsay 
+nnoremap tz :call CowsayFiglet('
 nnoremap <SPACE><SPACE>/ <ESC>/<++><CR>:nohlsearch<CR>c4l
 nnoremap <SPACE>fd /\(\<\w\+\>\)\_s*\1<CR>
 nnoremap sd <ESC>xi
@@ -78,6 +79,11 @@ nnoremap <SPACE>o o<ESC>
 noremap <C-a> <HOME>
 noremap <C-e> <END>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+" CowsayFiglet: read the cowsay and figlet
+function! CowsayFiglet(str) abort "{{{
+	r !echo a:str | figlet | cowsay
+endfunction "}}}
+
 
 " === Insert Mode Cursor Movement
 inoremap <M-h> <LEFT>
@@ -357,16 +363,8 @@ set signcolumn=yes
 
 " Coc-Completion mapping
 inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 if has('patch8.1.1068')
   " Use `complete_info` if your (Neo)Vim version supports it.
@@ -453,6 +451,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " === Coc-List ===
 nnoremap <silent> <SPACE><SPACE>l  :<C-u>CocList<CR>
 nnoremap <silent> <SPACE><SPACE>t  :<C-u>CocList --normal translation<CR>
+nnoremap <silent> <SPACE><SPACE>i  :<C-u>CocList --normal snippets<CR>
 nnoremap <silent> <space><space>g  :<C-u>CocList --normal gstatus<CR>
 nnoremap <silent> <SPACE><SPACE>m  :<C-u>CocList --normal marketplace<CR>
 nnoremap <silent> <SPACE><SPACE>a  :<C-u>CocList --normal diagnostics<CR>
@@ -488,6 +487,27 @@ let g:coc_explorer_global_presets = {
 \     'file.child.template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
 \   }
 \ }
+
+" === COC-Snippets===
+nnoremap <space>se :vsplit<CR>:CocCommand snippets.editSnippets<CR>
+nnoremap <space>so :vsplit<CR>:CocCommand snippets.openSnippetFiles<CR>
+imap <C-l> <Plug>(coc-snippets-expand)
+vmap <C-j> <Plug>(coc-snippets-select)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_prev = '<c-k>'
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " === COC-Translation ===
 nnoremap <SPACE>th :<C-u>CocCommand translator.exportHistory<CR>
