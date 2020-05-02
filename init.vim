@@ -70,6 +70,7 @@ nnoremap <SPACE>rc :e ~/.config/nvim/init.vim<CR>
 nnoremap <SPACE><CR> :nohlsearch<CR>
 nnoremap <SPACE>sp :set spell!<CR>
 nnoremap tx :r !figlet 
+nnoremap ty :r !cowsay 
 nnoremap <SPACE><SPACE>/ <ESC>/<++><CR>:nohlsearch<CR>c4l
 nnoremap <SPACE>fd /\(\<\w\+\>\)\_s*\1<CR>
 nnoremap sd <ESC>xi
