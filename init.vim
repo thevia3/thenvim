@@ -184,9 +184,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'connorholyday/vim-snazzy'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'ayu-theme/ayu-vim'
 Plug 'bling/vim-bufferline'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'hzchirs/vim-material'
+Plug 'chuling/vim-equinusocio-material'
+Plug 'tpope/vim-unimpaired'
 
 " === Vim oprator and motion
 Plug 'tpope/vim-commentary'
@@ -230,7 +232,9 @@ call plug#end()
 " ===
 " === Dress up my vim
 " ===
-nnoremap <SPACE>cd :set background=dark<CR>:colorscheme dracula<CR>:AirlineTheme dracula<CR>
+nnoremap <SPACE>cp :call ColorschemePapercolor()<CR>
+nnoremap <SPACE>cm :call ColorschemeMaterial()<CR>
+nnoremap <SPACE>ce :call ColorschemeVimequinusociomaterial()<CR>
 nnoremap <SPACE>cl :set background=light<CR>:colorscheme peachpuff<CR>:AirlineTheme papercolor<CR>
 nnoremap <SPACE>cs :set background=dark<CR>:colorscheme snazzy<CR>:AirlineTheme papercolor<CR>
 nnoremap <SPACE>cz :set background=light<CR>:colorscheme zellner<CR>:AirlineTheme xtermlight<CR>
@@ -238,8 +242,33 @@ nnoremap <SPACE>cz :set background=light<CR>:colorscheme zellner<CR>:AirlineThem
 nnoremap <SPACE>cc :set background=dark<CR>:colorscheme dracula<CR>:AirlineTheme solarized_flood<CR>
 set background=dark
 colorscheme dracula
-let g:airline_theme='solarized_flood'
-" let g:airline_theme='dracula'
+" let g:airline_theme='solarized_flood'
+let g:airline_theme='dracula'
+
+" ColorschemePapercolor: 
+function! ColorschemePapercolor() abort "{{{
+	set background=dark
+	colorscheme PaperColor
+	let g:airline_theme='papercolor'
+	let g:lightline={ 'colorscheme': 'PaperColor' }
+endfunction "}}}
+" ColorschemeMaterial: 
+function! ColorschemeMaterial() abort "{{{
+	let g:material_style='oceanic'
+	set background=light
+	colorscheme vim-material
+	let g:airline_theme='papercolor'
+endfunction "}}}
+" ColorschemeVimequinusociomaterial: 
+function! ColorschemeVimequinusociomaterial() abort "{{{
+	set termguicolors
+	let g:equinusocio_material_darker = 1
+	let g:equinusocio_material_hide_vertsplit = 1
+	colorscheme equinusocio_material
+	let g:lightline = {
+		\ 'colorscheme': 'equinusocio_material',
+		\ }
+endfunction "}}}
 
 
 " ===
