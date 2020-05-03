@@ -220,11 +220,15 @@ Plug 'kevinhwang91/rnvimr'
 " === Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" === Startify
+Plug 'mhinz/vim-startify'
+
 " === Other
 Plug 'rhysd/clever-f.vim'
 Plug 'jwarby/antovim'
 " Plug 'RRethy/vim-hexokinase'
 Plug 'lervag/vimtex' , {'for': ['latex','tex']}
+Plug 'rhysd/accelerated-jk'
 
 call plug#end()
 
@@ -280,6 +284,12 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsEditSplit="vertical"
 
+
+" ===
+" === Accelerated-jk
+" ===
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
 
 " ===
 " === NERDTree
@@ -523,8 +533,6 @@ nnoremap <space>so :vsplit<CR>:CocCommand snippets.openSnippetFiles<CR>
 imap <C-l> <Plug>(coc-snippets-expand)
 vmap <C-j> <Plug>(coc-snippets-select)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-k>'
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -536,7 +544,8 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_next = '<TAB>'
+let g:coc_snippet_prev = '<C-TAB>'
 
 " === COC-Translation ===
 nnoremap <SPACE>th :<C-u>CocCommand translator.exportHistory<CR>
