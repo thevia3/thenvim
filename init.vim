@@ -71,7 +71,6 @@ nnoremap <SPACE><CR> :nohlsearch<CR>
 nnoremap <SPACE>sp :set spell!<CR>
 nnoremap tx :r !figlet 
 nnoremap ty :r !cowsay 
-nnoremap tz :call CowsayFiglet('
 nnoremap <SPACE><SPACE>/ <ESC>/<++><CR>:nohlsearch<CR>c4l
 nnoremap <SPACE>fd /\(\<\w\+\>\)\_s*\1<CR>
 nnoremap sd <ESC>xi
@@ -79,10 +78,10 @@ nnoremap <SPACE>o o<ESC>
 noremap <C-a> <HOME>
 noremap <C-e> <END>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-" CowsayFiglet: read the cowsay and figlet
-function! CowsayFiglet(str) abort "{{{
-	r !echo a:str | figlet | cowsay
-endfunction "}}}
+" " CowsayFiglet: read the cowsay and figlet
+" function! CowsayFiglet(str) abort "{{{
+" 	r !echo a:str | figlet | cowsay
+" endfunction "}}}
 
 
 " === Insert Mode Cursor Movement
@@ -204,12 +203,12 @@ Plug 'mzlogin/vim-markdown-toc', {'for' : 'markdown'}
 Plug 'coachshea/vim-textobj-markdown', {'for' : 'markdown'}
 
 " === Ultisnips and vim-snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 " === NERDTree
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'preservim/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " === Vimwiki
 Plug 'vimwiki/vimwiki'
@@ -222,6 +221,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " === Startify
 Plug 'mhinz/vim-startify'
+
+" === Defx.nvim
+Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'kristijanhusak/defx-icons'
+Plug 'kristijanhusak/defx-git'
+
 
 " === Other
 Plug 'rhysd/clever-f.vim'
@@ -278,11 +283,11 @@ endfunction "}}}
 " ===
 " === Ultisnips
 " ===
-let g:UltiSqnipsExpandTrigger="<c-a>"
-let g:UltiSnipsJumpForwardTrigger="<c-a>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-let g:UltiSnipsListSnippets="<c-l>"
-let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSqnipsExpandTrigger="<c-a>"
+" let g:UltiSnipsJumpForwardTrigger="<c-a>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+" let g:UltiSnipsListSnippets="<c-l>"
+" let g:UltiSnipsEditSplit="vertical"
 
 
 " ===
@@ -291,26 +296,67 @@ let g:UltiSnipsEditSplit="vertical"
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 
+
+" ===
+" === Defx.nvim
+" ===
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+	" Define mappings
+	nnoremap <silent><buffer><expr> <CR> defx#do_action('open')
+	nnoremap <silent><buffer><expr> c defx#do_action('copy')
+	nnoremap <silent><buffer><expr> m defx#do_action('move')
+	nnoremap <silent><buffer><expr> p defx#do_action('paste')
+	nnoremap <silent><buffer><expr> l defx#do_action('open')
+	nnoremap <silent><buffer><expr> E defx#do_action('open', 'vsplit')
+	nnoremap <silent><buffer><expr> P defx#do_action('open', 'pedit')
+	nnoremap <silent><buffer><expr> o defx#do_action('open_tree', 'toggle')
+	nnoremap <silent><buffer><expr> K defx#do_action('new_directory')
+	nnoremap <silent><buffer><expr> N defx#do_action('new_file')
+	nnoremap <silent><buffer><expr> M defx#do_action('new_multiple_files')
+	nnoremap <silent><buffer><expr> C defx#do_action('toggle_columns',
+	\	'mark:indent:icon:filename:type:size:time')
+	nnoremap <silent><buffer><expr> S defx#do_action('toggle_sort', 'time')
+	nnoremap <silent><buffer><expr> d defx#do_action('remove')
+	nnoremap <silent><buffer><expr> r defx#do_action('rename')
+	nnoremap <silent><buffer><expr> ! defx#do_action('execute_command')
+	nnoremap <silent><buffer><expr> x defx#do_action('execute_system')
+	nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
+	nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
+	nnoremap <silent><buffer><expr> ; defx#do_action('repeat')
+	nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
+	nnoremap <silent><buffer><expr> ~ defx#do_action('cd')
+	nnoremap <silent><buffer><expr> q defx#do_action('quit')
+	nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
+	nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
+	nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
+	nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
+	nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
+	nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
+	nnoremap <silent><buffer><expr> cd defx#do_action('change_vim_cwd')
+endfunction
+
+
 " ===
 " === NERDTree
 " ===
-nnoremap tt :NERDTreeToggle<CR>
+"nnoremap tt :NERDTreeToggle<CR>
 "close vim when the only windows left open is NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let NERDTreeShowHidden=1
-let NERDTreeAutoDeleteBuffer=1
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"let NERDTreeShowHidden=1
+"let NERDTreeAutoDeleteBuffer=1
+"let g:NERDTreeIndicatorMapCustom = {
+"    \ "Modified"  : "✹",
+"    \ "Staged"    : "✚",
+"    \ "Untracked" : "✭",
+"    \ "Renamed"   : "➜",
+"    \ "Unmerged"  : "═",
+"    \ "Deleted"   : "✖",
+"    \ "Dirty"     : "✗",
+"    \ "Clean"     : "✔︎",
+"    \ 'Ignored'   : '☒',
+"    \ "Unknown"   : "?"
+"    \ }
 
 
 " ===
