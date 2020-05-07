@@ -218,6 +218,7 @@ Plug 'kevinhwang91/rnvimr'
 
 " === Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-syntastic/syntastic'
 
 " === Startify
 Plug 'mhinz/vim-startify'
@@ -226,7 +227,6 @@ Plug 'mhinz/vim-startify'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-icons'
 Plug 'kristijanhusak/defx-git'
-
 
 " === Other
 Plug 'rhysd/clever-f.vim'
@@ -300,6 +300,8 @@ nmap k <Plug>(accelerated_jk_gk)
 " ===
 " === Defx.nvim
 " ===
+nnoremap tt :<C-u>vsplit<CR>:vertical resize-30<CR>:Defx<CR>
+nnoremap ta :Defx<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
 	" Define mappings
@@ -338,25 +340,16 @@ endfunction
 
 
 " ===
-" === NERDTree
+" === Vim-Syntastic
 " ===
-"nnoremap tt :NERDTreeToggle<CR>
-"close vim when the only windows left open is NERDTree
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"let NERDTreeShowHidden=1
-"let NERDTreeAutoDeleteBuffer=1
-"let g:NERDTreeIndicatorMapCustom = {
-"    \ "Modified"  : "✹",
-"    \ "Staged"    : "✚",
-"    \ "Untracked" : "✭",
-"    \ "Renamed"   : "➜",
-"    \ "Unmerged"  : "═",
-"    \ "Deleted"   : "✖",
-"    \ "Dirty"     : "✗",
-"    \ "Clean"     : "✔︎",
-"    \ 'Ignored'   : '☒',
-"    \ "Unknown"   : "?"
-"    \ }
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 
 " ===
@@ -595,8 +588,8 @@ let g:coc_snippet_prev = '<C-TAB>'
 
 " === COC-Translation ===
 nnoremap <SPACE>th :<C-u>CocCommand translator.exportHistory<CR>
-nnoremap <SPACE>tt :<C-u>CocCommand translator.popup<CR>
-vnoremap <SPACE>tt :normal CocCommand translator.popup<CR>
+nnoremap <SPACE>; :<C-u>CocCommand translator.popup<CR>
+vnoremap <SPACE>; :normal CocCommand translator.popup<CR>
 nnoremap <SPACE>te :<C-u>CocCommand translator.echo<CR>
 vnoremap <SPACE>te :normal CcCommand translator.echo<CR>
 nnoremap <SPACE>tr :<C-u>CocCommand translator.replace<CR>
