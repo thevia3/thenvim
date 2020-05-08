@@ -187,6 +187,14 @@ function! s:CompileeRunCommand() abort "{{{
 	endif
 endfunction "}}}
 
+" Builtmap: 
+map <SPACE>rb :call Builtmap('nnoremap','<SPACE>rj','5j')<CR>
+function! Builtmap(map,lsp,rsp) abort "{{{
+	execute a:map a:lsp a:rsp
+	echo '100000'
+endfunction "}}}
+
+
 call plug#begin("$HOME/.config/nvim/plugged")
 
 " === Pretty Dress
