@@ -137,8 +137,9 @@ nnoremap tp :bN<CR>
 nnoremap td :bd<CR>
 
 " === Other useful stuff
-noremap <SPACE>R :call CompileRunCommand()<CR>
+nmap <SPACE>R :call CompileRunCommand()<CR>
 func! CompileRunCommand()
+	echo "Hello world"
 	exec "w"
 	if &filetype == 'c'
 		exec "!g++ % -o %<"
@@ -156,9 +157,9 @@ func! CompileRunCommand()
 		:!time bash %
 	elseif &filetype == 'py'
 		:!python3 %
-"		set splitbelow
-"		:sp
-"		:term python %
+		" set splitbelow
+		" split
+		" term python %
 	elseif &filetype == 'html'
 		silent! exec "!".g:mkdp_browser." % &"
 	elseif &filetype == 'markdown'
@@ -175,6 +176,16 @@ func! CompileRunCommand()
 	endif
 endfunc
 
+" CompileeRunCommand: 
+nmap <SPACE>rr :call s:CompileeRunCommand()<CR>
+function! s:CompileeRunCommand() abort "{{{
+	echo 'Hello,World'
+	if &filetype == 'py'
+		set splitbelow
+		:split
+		:term python3 %
+	endif
+endfunction "}}}
 
 call plug#begin("$HOME/.config/nvim/plugged")
 
@@ -205,7 +216,6 @@ Plug 'coachshea/vim-textobj-markdown', {'for' : 'markdown'}
 " === Ultisnips and vim-snippets
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
-
 " === NERDTree
 " Plug 'preservim/nerdtree'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -300,7 +310,7 @@ nmap k <Plug>(accelerated_jk_gk)
 " ===
 " === Defx.nvim
 " ===
-nnoremap tt :<C-u>vsplit<CR>:vertical resize-30<CR>:Defx<CR>
+nnoremap tt :<C-u>vsplit<CR>:vertical-resize 35<CR>:Defx<CR>
 nnoremap ta :Defx<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
