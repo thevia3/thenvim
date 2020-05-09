@@ -318,7 +318,9 @@ nmap k <Plug>(accelerated_jk_gk)
 " ===
 " === Defx.nvim
 " ===
-nnoremap tt :<C-u>vsplit<CR>:vertical-resize 35<CR>:Defx<CR>
+nnoremap tt :set splitright<CR>vsplit<CR>:vertical-resize 35<CR>:Defx<CR>
+nnoremap ti :set nosplitright<CR>:vsplit<CR>:vertical-resize 35<CR>
+	\ :set splitright<CR>:Defx<CR>
 nnoremap ta :Defx<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
