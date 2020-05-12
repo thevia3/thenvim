@@ -58,11 +58,13 @@ if has('persistent_undo')
 endif
 
 " === Basic Mappings
+let mapleader=','
 nnoremap ; :
 nnoremap : ;
 vnoremap ; :
-nnoremap ss s
-nnoremap <C-s> S
+nnoremap ,s s
+nnoremap ,S S
+nmap ,a <CTRL-I>
 nnoremap Q :q<CR>
 nnoremap S :w!<CR>
 nnoremap W :w %<CR>:source %<CR>
@@ -73,10 +75,7 @@ nnoremap tx :r !figlet
 nnoremap ty :r !cowsay 
 nnoremap <SPACE><SPACE>/ <ESC>/<++><CR>:nohlsearch<CR>c4l
 nnoremap <SPACE>fd /\(\<\w\+\>\)\_s*\1<CR>
-nnoremap sd <ESC>xi
 nnoremap <SPACE>o o<ESC>
-noremap <C-a> <HOME>
-noremap <C-e> <END>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " " CowsayFiglet: read the cowsay and figlet
 " function! CowsayFiglet(str) abort "{{{
@@ -176,24 +175,6 @@ func! CompileRunCommand()
 	endif
 endfunc
 
-" CompileeRunCommand: 
-nmap <SPACE>rr :call s:CompileeRunCommand()<CR>
-function! s:CompileeRunCommand() abort "{{{
-	echo 'Hello,World'
-	if &filetype == 'py'
-		set splitbelow
-		:split
-		:term python3 %
-	endif
-endfunction "}}}
-
-" Builtmap: 
-map <SPACE>rb :call Builtmap('nnoremap','<SPACE>rj','5j')<CR>
-function! Builtmap(map,lsp,rsp) abort "{{{
-	execute a:map a:lsp a:rsp
-	echo '100000'
-endfunction "}}}
-
 
 call plug#begin("$HOME/.config/nvim/plugged")
 
@@ -220,13 +201,6 @@ Plug 'rbonvall/vim-textobj-latex', {'for' : 'latex'}
 " === Markdown
 Plug 'mzlogin/vim-markdown-toc', {'for' : 'markdown'}
 Plug 'coachshea/vim-textobj-markdown', {'for' : 'markdown'}
-
-" === Ultisnips and vim-snippets
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
-" === NERDTree
-" Plug 'preservim/nerdtree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " === Vimwiki
 Plug 'vimwiki/vimwiki'
