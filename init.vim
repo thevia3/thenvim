@@ -292,14 +292,33 @@ nmap k <Plug>(accelerated_jk_gk)
 " ===
 " === Defx.nvim
 " ===
-nnoremap tt :set splitright<CR>vsplit<CR>:vertical-resize 35<CR>:Defx<CR>
-nnoremap ti :set nosplitright<CR>:vsplit<CR>:vertical-resize 35<CR>
-	\ :set splitright<CR>:Defx<CR>
+nnoremap tt :set splitright<CR>:vsplit<CR>:vertical resize 30<CR>
+	\ :Defx<CR>
+nnoremap ti :set nosplitright<CR>:vsplit<CR>:vertical resize 30<CR>
+	\ :set splitright<CR>:Defx ~/<CR>
 nnoremap ta :Defx<CR>
+
+call defx#custom#column('icon', {
+	  \ 'directory_icon': '▸',
+	  \ 'opened_icon': '▾',
+	  \ 'root_icon': ' ',
+	  \ })
+call defx#custom#column('filename', {
+	  \ 'min_width': 40,
+	  \ 'max_width': 40,
+	  \ })
+call defx#custom#column('mark', {
+	  \ 'readonly_icon': '✗',
+	  \ 'selected_icon': '✓',
+	  \ })
+
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
 	" Define mappings
-	nnoremap <silent><buffer><expr> <CR> defx#do_action('open')
+	nnoremap <silent><buffer><expr> <CR>
+	\ defx#is_directory() ?
+	\ defx#do_action('open_directory') :
+	\ defx#do_action('multi', ['drop', 'quit'])
 	nnoremap <silent><buffer><expr> c defx#do_action('copy')
 	nnoremap <silent><buffer><expr> m defx#do_action('move')
 	nnoremap <silent><buffer><expr> p defx#do_action('paste')
