@@ -273,16 +273,6 @@ endfunction "}}}
 
 
 " ===
-" === Ultisnips
-" ===
-" let g:UltiSqnipsExpandTrigger="<c-a>"
-" let g:UltiSnipsJumpForwardTrigger="<c-a>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-" let g:UltiSnipsListSnippets="<c-l>"
-" let g:UltiSnipsEditSplit="vertical"
-
-
-" ===
 " === Accelerated-jk
 " ===
 nmap j <Plug>(accelerated_jk_gj)
@@ -293,10 +283,10 @@ nmap k <Plug>(accelerated_jk_gk)
 " === Defx.nvim
 " ===
 nnoremap tt :set splitright<CR>:vsplit<CR>:vertical resize 30<CR>
-	\ :Defx<CR>
-nnoremap ti :set nosplitright<CR>:vsplit<CR>:vertical resize 30<CR>
-	\ :set splitright<CR>:Defx ~/<CR>
-nnoremap ta :Defx<CR>
+	\ :Defx -columns=git:icons:mark:filename:type<CR>
+nnoremap ti :set nosplitright<CR>:vsplit<CR>:vertical resize 25<CR>
+	\ :set splitright<CR>:Defx -columns=git:icons:mark:filename:type ~/<CR>
+nnoremap ta :Defx -columns=git:icons:mark:filename:type<CR>
 
 call defx#custom#column('icon', {
 	  \ 'directory_icon': '▸',
@@ -311,6 +301,40 @@ call defx#custom#column('mark', {
 	  \ 'readonly_icon': '✗',
 	  \ 'selected_icon': '✓',
 	  \ })
+
+call defx#custom#column('git', 'max_indicator_width', 1)
+call defx#custom#column('git', 'indicators', {
+  \ 'Modified'  : '✹',
+  \ 'Staged'    : '✚',
+  \ 'Untracked' : '✭',
+  \ 'Renamed'   : '➜',
+  \ 'Unmerged'  : '═',
+  \ 'Ignored'   : '☒',
+  \ 'Deleted'   : '✖',
+  \ 'Unknown'   : '?'
+  \ })
+
+hi Defx_git_Untracked guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
+hi Defx_git_Ignored guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
+hi Defx_git_Unknown guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
+hi Defx_git_Renamed ctermfg=214 guifg=#fabd2f
+hi Defx_git_Modified ctermfg=214 guifg=#fabd2f
+hi Defx_git_Unmerged ctermfg=167 guifg=#fb4934
+hi Defx_git_Deleted ctermfg=167 guifg=#fb4934
+hi Defx_git_Staged ctermfg=142 guifg=#b8bb26
+
+let g:defx_icons_enable_syntax_highlight = 1
+let g:defx_icons_column_length = 2
+let g:defx_icons_directory_icon = ''
+let g:defx_icons_mark_icon = '*'
+let g:defx_icons_copy_icon = ''
+let g:defx_icons_move_icon = ''
+let g:defx_icons_parent_icon = ''
+let g:defx_icons_default_icon = ''
+let g:defx_icons_directory_symlink_icon = ''
+let g:defx_icons_root_opened_tree_icon = ''
+let g:defx_icons_nested_opened_tree_icon = ''
+let g:defx_icons_nested_closed_tree_icon = ''
 
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
@@ -522,7 +546,7 @@ onoremap af <Plug>(coc-funcobj-a)
 " Use <TAB> for selections ranges.
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
 " coc-tsserver, coc-python are the examples of servers that support it.
-nnoremap <silent> <TAB> <Plug>(coc-range-select)
+" nnoremap <silent> <TAB> <Plug>(coc-range-select)
 xnoremap <silent> <TAB> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
