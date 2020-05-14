@@ -441,20 +441,14 @@ let g:rnvimr_presets = [
 " ===
 " === OTHER
 " ===
-" antovim--replace the cursor
+" ### antovim--replace the cursor
 " let g:antovim_definitions = extend(g:antovim_definitions, [['TRUE','FALSE','YES', 'NO' ]])
 autocmd FileType javascript let g:custom_antovim_definitions = [
-  \   ['this', 'that']
-  \ ]
+	\   ['this', 'that']
+	\ ]
 nnoremap <SPACE>p :Antovim<CR>
-" clever-f
+" ### clever-f
 let g:clever_f_ignore_case=1
-
-
-" ===
-" === vim-hecokinase
-" ===
-" let g:Hexokinase_highlighters = [ 'virtual' ]
 
 
 " ===
@@ -582,26 +576,26 @@ nnoremap <space>ed :CocCommand explorer --preset .vim<CR>
 nnoremap <space>ef :CocCommand explorer --preset floating<CR>
 nnoremap <space>el :CocList explPresets<CR>
 let g:coc_explorer_global_presets = {
-\   '.vim': {
-\      'root-uri': '~/.vim',
-\   },
-\   'floating': {
-\      'position': 'floating',
-\   },
-\   'floatingLeftside': {
-\      'position': 'floating',
-\      'floating-position': 'left-center',
-\      'floating-width': 50,
-\   },
-\   'floatingRightside': {
-\      'position': 'floating',
-\      'floating-position': 'left-center',
-\      'floating-width': 50,
-\   },
-\   'simplify': {
-\     'file.child.template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-\   }
-\ }
+		\   '.vim': {
+		\      'root-uri': '~/.vim',
+		\   },
+		\   'floating': {
+		\      'position': 'floating',
+		\   },
+		\   'floatingLeftside': {
+		\      'position': 'floating',
+		\      'floating-position': 'left-center',
+		\      'floating-width': 50,
+		\   },
+		\   'floatingRightside': {
+		\      'position': 'floating',
+		\      'floating-position': 'left-center',
+		\      'floating-width': 50,
+		\   },
+		\   'simplify': {
+		\     'file.child.template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+		\   }
+		\ }
 
 " === COC-Snippets===
 nnoremap <space>se :vsplit<CR>:CocCommand snippets.editSnippets<CR>
@@ -616,8 +610,8 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 let g:coc_snippet_next = '<TAB>'
@@ -634,7 +628,7 @@ vnoremap <SPACE>tr :normal CocCommand translator.replace<CR>
 
 " Coc-Actions ===
 function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
+	execute 'CocCommand actions.open ' . a:type
 endfunction
 xmap <silent> <SPACE>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <SPACE>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
