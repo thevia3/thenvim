@@ -304,15 +304,15 @@ call defx#custom#column('mark', {
 
 call defx#custom#column('git', 'max_indicator_width', 1)
 call defx#custom#column('git', 'indicators', {
-  \ 'Modified'  : '✹',
-  \ 'Staged'    : '✚',
-  \ 'Untracked' : '✭',
-  \ 'Renamed'   : '➜',
-  \ 'Unmerged'  : '═',
-  \ 'Ignored'   : '☒',
-  \ 'Deleted'   : '✖',
-  \ 'Unknown'   : '?'
-  \ })
+	\ 'Modified'  : '✹',
+	\ 'Staged'    : '✚',
+	\ 'Untracked' : '✭',
+	\ 'Renamed'   : '➜',
+	\ 'Unmerged'  : '═',
+	\ 'Ignored'   : '☒',
+	\ 'Deleted'   : '✖',
+	\ 'Unknown'   : '?'
+	\ })
 
 hi Defx_git_Untracked guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
 hi Defx_git_Ignored guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
