@@ -64,7 +64,8 @@ nnoremap : ;
 vnoremap ; :
 nnoremap ,s s
 nnoremap ,S S
-nmap ,a <CTRL-I>
+nnoremap ,u guaw
+nnoremap ,U gUaw
 nnoremap Q :q<CR>
 nnoremap S :w!<CR>
 nnoremap W :w %<CR>:source %<CR>
@@ -282,10 +283,12 @@ nmap k <Plug>(accelerated_jk_gk)
 " ===
 " === Defx.nvim
 " ===
-nnoremap tt :set splitright<CR>:vsplit<CR>:vertical resize 30<CR>
-	\ :Defx -columns=git:icons:mark:filename:type<CR>
-nnoremap ti :set nosplitright<CR>:vsplit<CR>:vertical resize 25<CR>
-	\ :set splitright<CR>:Defx -columns=git:icons:mark:filename:type ~/<CR>
+nnoremap tt :Defx -split=vertical -direction=botright
+	\ -columns=mark:icons:index:filename:type<CR>
+	\ :vertical resize 30<CR>
+nnoremap ti :Defx -split=vertical -direction=topletft
+	\ -columns=mark:icons:index:filename:type<CR>
+	\ :vertical resize 25<CR>
 nnoremap ta :Defx -columns=git:icons:mark:filename:type<CR>
 
 call defx#custom#column('icon', {
@@ -340,13 +343,20 @@ autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
 	" Define mappings
 	nnoremap <silent><buffer><expr> <CR>
-	\ defx#is_directory() ?
-	\ defx#do_action('open_directory') :
-	\ defx#do_action('multi', ['drop', 'quit'])
+		\ defx#is_directory() ?
+		\ defx#do_action('open_directory') :
+		\ defx#do_action('multi', ['drop', 'quit'])
+	nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
+	nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
+	nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
+	" nnoremap <silent><buffer><expr> l defx#do_action('open')
+	nnoremap <silent><buffer><expr> l
+		\ defx#is_directory() ?
+		\ defx#do_action('open') :
+		\ defx#do_action('open','vsplit')
 	nnoremap <silent><buffer><expr> c defx#do_action('copy')
 	nnoremap <silent><buffer><expr> m defx#do_action('move')
 	nnoremap <silent><buffer><expr> p defx#do_action('paste')
-	nnoremap <silent><buffer><expr> l defx#do_action('open')
 	nnoremap <silent><buffer><expr> E defx#do_action('open', 'vsplit')
 	nnoremap <silent><buffer><expr> P defx#do_action('open', 'pedit')
 	nnoremap <silent><buffer><expr> o defx#do_action('open_tree', 'toggle')
@@ -363,13 +373,10 @@ function! s:defx_my_settings() abort
 	nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
 	nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
 	nnoremap <silent><buffer><expr> ; defx#do_action('repeat')
-	nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
 	nnoremap <silent><buffer><expr> ~ defx#do_action('cd')
 	nnoremap <silent><buffer><expr> q defx#do_action('quit')
 	nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
 	nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
-	nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
-	nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
 	nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
 	nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
 	nnoremap <silent><buffer><expr> cd defx#do_action('change_vim_cwd')
@@ -450,6 +457,29 @@ nnoremap <SPACE>p :Antovim<CR>
 " ### clever-f
 let g:clever_f_ignore_case=1
 
+
+" ===
+" === Python project
+" ===
+nmap <LEADER>p :call OpenPythonProject()<CR>
+" OpenPythonProject: 
+function! OpenPythonProject() abort "{{{
+	:tabnew
+	:edit ~/termux/python_100example/ep_4judedays.py
+	:Defx -columns=mark:indent:icon:filename:type 
+	\ -buffer-name="Python Project"
+	\ -split=vertical
+	\ -directory=topleft
+	\ ~/termux/python_100example
+	:vertical resize 30
+endfunction "}}}
+
+nnoremap <leader>. :Defx -columns=mark:indent:icon:filename:type 
+	\ -buffer-name="Python Project"
+	\ -split=vertical
+	\ -direction=topleft
+	\ ~/termux/python_100example<CR>
+	\ :vertical resize 30<CR>
 
 " ===
 " === COC
