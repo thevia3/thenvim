@@ -107,9 +107,13 @@ inoremap <C-,>h <C-\><C-N><C-w>h
 inoremap <C-,>j <C-\><C-N><C-w>j
 inoremap <C-,>k <C-\><C-N><C-w>k
 inoremap <C-,>l <C-\><C-N><C-w>l
-nnoremap <SPACE>k <C-w>k
-nnoremap <SPACE>j <C-w>j
+nnoremap <C-,>h <C-w>h
+nnoremap <C-,>j <C-w>j
+nnoremap <C-,>k <C-w>k
+nnoremap <C-,>l <C-w>l
 nnoremap <SPACE>h <C-w>h
+nnoremap <SPACE>j <C-w>j
+nnoremap <SPACE>k <C-w>k
 nnoremap <SPACE>l <C-w>l
 nnoremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
 nnoremap sj :set splitbelow<CR>:split<CR>
@@ -123,8 +127,10 @@ nnoremap st <C-w>t<C-w>K
 nnoremap sv <C-w>t<C-w>H
 nnoremap srh <C-w>b<C-w>K
 nnoremap srv <C-w>b<C-w>H
-nnoremap <SPACE>q <C-w>j:q<CR>
-nnoremap sn <C-w>T
+nnoremap <SPACE>qh <C-w>h:q<CR>
+nnoremap <SPACE>qj <C-w>j:q<CR>
+nnoremap <SPACE>qk <C-w>k:q<CR>
+nnoremap <SPACE>ql <C-w>l:q<CR>
  
 " === Tab and Buffer management
 nnoremap tu :tabe<CR>
@@ -149,6 +155,7 @@ nnoremap <SPACE><LEADER> :split<CR>:resize 5<CR>:terminal<CR>
 	\ :startinsert<CR>ls<CR>
 
 " === Other useful stuff
+nnoremap <LEADER>mp :!python3 %<CR>
 nnoremap <LEADER><LEADER>p :split<CR>:resize 5<CR>:terminal<CR>
 	\ :startinsert<CR>cd termux/python_100example/<CR>
 	\ <C-l>ls<CR>
