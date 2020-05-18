@@ -103,6 +103,10 @@ cnoremap <M-b> <S-LEFT>
 cnoremap <M-w> <S-RIGHT>
  
 " === Window management
+inoremap <C-,>h <C-\><C-N><C-w>h
+inoremap <C-,>j <C-\><C-N><C-w>j
+inoremap <C-,>k <C-\><C-N><C-w>k
+inoremap <C-,>l <C-\><C-N><C-w>l
 nnoremap <SPACE>k <C-w>k
 nnoremap <SPACE>j <C-w>j
 nnoremap <SPACE>h <C-w>h
@@ -122,21 +126,32 @@ nnoremap srv <C-w>b<C-w>H
 nnoremap <SPACE>q <C-w>j:q<CR>
 nnoremap sn <C-w>T
  
-" === Tab and management
+" === Tab and Buffer management
 nnoremap tu :tabe<CR>
 nnoremap th :-tabnext<CR>
 nnoremap tl :+tabnext<CR>
 nnoremap tmh :-tabmove<CR>
 nnoremap tml :+tabmove<CR>
 
-" === Buffer management
 nnoremap tbl :ls!<CR>
 nnoremap tbp :buffers<CR>
 nnoremap tn :bn<CR>
 nnoremap tp :bN<CR>
 nnoremap td :bd<CR>
 
+" === Nvim-Terminal
+tnoremap <C-,>h <C-\><C-N><C-w>h
+tnoremap <C-,>j <C-\><C-N><C-w>j
+tnoremap <C-,>k <C-\><C-N><C-w>k
+tnoremap <C-,>l <C-\><C-N><C-w>l
+tnoremap <C-c> <C-\><C-N>:quit<CR>
+nnoremap <SPACE><LEADER> :split<CR>:resize 5<CR>:terminal<CR>
+	\ :startinsert<CR>ls<CR>
+
 " === Other useful stuff
+nnoremap <LEADER><LEADER>p :split<CR>:resize 5<CR>:terminal<CR>
+	\ :startinsert<CR>cd termux/python_100example/<CR>
+	\ <C-l>ls<CR>
 nmap <SPACE>R :call CompileRunCommand()<CR>
 func! CompileRunCommand()
 	echo "Hello world"
@@ -283,12 +298,12 @@ nmap k <Plug>(accelerated_jk_gk)
 " ===
 " === Defx.nvim
 " ===
-nnoremap tt :Defx -split=vertical -direction=botright
-	\ -columns=mark:icons:index:filename:type<CR>
-	\ :vertical resize 30<CR>
-nnoremap ti :Defx -split=vertical -direction=topletft
+nnoremap tt :Defx -split=vertical -direction=topleft
 	\ -columns=mark:icons:index:filename:type<CR>
 	\ :vertical resize 25<CR>
+" nnoremap ti :Defx -split=vertical -direction=topletft
+" 	\ -columns=mark:icons:index:filename:type<CR>
+" 	\ :vertical resize 25<CR>
 nnoremap ta :Defx -columns=git:icons:mark:filename:type<CR>
 
 call defx#custom#column('icon', {
@@ -364,7 +379,7 @@ function! s:defx_my_settings() abort
 	nnoremap <silent><buffer><expr> N defx#do_action('new_file')
 	nnoremap <silent><buffer><expr> M defx#do_action('new_multiple_files')
 	nnoremap <silent><buffer><expr> C defx#do_action('toggle_columns',
-	\	'mark:indent:icon:filename:type:size:time')
+		\ 'mark:indent:icon:filename:type:size:time')
 	nnoremap <silent><buffer><expr> S defx#do_action('toggle_sort', 'time')
 	nnoremap <silent><buffer><expr> d defx#do_action('remove')
 	nnoremap <silent><buffer><expr> r defx#do_action('rename')
