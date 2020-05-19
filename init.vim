@@ -493,7 +493,8 @@ function! OpenPythonProject() abort "{{{
 	:vertical resize 30
 endfunction "}}}
 
-nnoremap <leader>. :Defx -columns=mark:indent:icon:filename:type 
+nnoremap <LEADER>r :!python3 %<CR>
+nnoremap <LEADER>. :Defx -columns=mark:indent:icon:filename:type 
 	\ -buffer-name="Python Project"
 	\ -split=vertical
 	\ -direction=topleft
