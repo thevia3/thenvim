@@ -151,7 +151,7 @@ tnoremap <C-,>j <C-\><C-N><C-w>j
 tnoremap <C-,>k <C-\><C-N><C-w>k
 tnoremap <C-,>l <C-\><C-N><C-w>l
 tnoremap <C-c> <C-\><C-N>:quit<CR>
-nnoremap <SPACE><LEADER> :split<CR>:resize 5<CR>:terminal<CR>
+nnoremap <SPACE><LEADER> :vsplit<CR>:vertical resize 50<CR>:terminal<CR>
 	\ :startinsert<CR>ls<CR>
 
 " === Other useful stuff
@@ -308,9 +308,6 @@ nmap k <Plug>(accelerated_jk_gk)
 nnoremap tt :Defx -split=vertical -direction=topleft
 	\ -columns=mark:icons:index:filename:type<CR>
 	\ :vertical resize 25<CR>
-" nnoremap ti :Defx -split=vertical -direction=topletft
-" 	\ -columns=mark:icons:index:filename:type<CR>
-" 	\ :vertical resize 25<CR>
 nnoremap ta :Defx -columns=git:icons:mark:filename:type<CR>
 
 call defx#custom#column('icon', {
