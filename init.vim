@@ -4,6 +4,7 @@
 "| | | | | | |_| | | | \ V /| | | | | | | | | (__ 
 "|_| |_| |_|\__, |_| |_|\_/ |_|_| |_| |_|_|  \___|
            "|___/                                 
+
 set number
 set relativenumber
 set nocompatible
@@ -78,10 +79,6 @@ nnoremap <SPACE><SPACE>/ <ESC>/<++><CR>:nohlsearch<CR>c4l
 nnoremap <SPACE>fd /\(\<\w\+\>\)\_s*\1<CR>
 nnoremap <SPACE>o o<ESC>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-" " CowsayFiglet: read the cowsay and figlet
-" function! CowsayFiglet(str) abort "{{{
-" 	r !echo a:str | figlet | cowsay
-" endfunction "}}}
 
 
 " === Insert Mode Cursor Movement
