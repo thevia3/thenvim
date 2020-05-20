@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/data/data/com.termux/files/home/.config/nvim/plugged'
 let g:netrw_dirhist_2='/data/data/com.termux/files/home/termux/python_100example'
 let g:netrw_dirhist_1='/data/data/com.termux/files/home/.config/nvim/plugged/vim-hexokinase/doc'
