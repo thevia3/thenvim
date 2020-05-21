@@ -231,6 +231,7 @@ Plug 'kevinhwang91/rnvimr'
 " === Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-syntastic/syntastic'
+Plug 'MaskRay/ccls'
 
 " === Startify
 Plug 'mhinz/vim-startify'
@@ -506,7 +507,7 @@ let g:coc_global_extensions = [
 	\'coc-vimlsp', 'coc-html', 'coc-json', 
 	\'coc-css', 'coc-git', 'coc-explorer',
 	\'coc-tsserver','coc-ultisnips','coc-snippets',
-	\'coc-translator','coc-actions',
+	\'coc-translator','cocpairs',
 	\'coc-actions','coc-spell-checker','coc-terminal',]
 
 set hidden
@@ -542,11 +543,11 @@ nnoremap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
@@ -560,11 +561,11 @@ xnoremap <leader>f  <Plug>(coc-format-selected)
 nnoremap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+	autocmd!
+	" Setup formatexpr specified filetype(s).
+	autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+	" Update signature help on jump placeholder.
+	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Applying codeAction to the selected region.
@@ -680,3 +681,5 @@ endfunction
 xmap <silent> <SPACE>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <SPACE>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
+" Coc-Pairs
+autocmd FileType tex let b:coc_pairs = [["$", "$"]]
