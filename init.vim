@@ -43,6 +43,9 @@ set lazyredraw "same as above
 set visualbell
 set colorcolumn=80
 set virtualedit=block
+setlocal spelllang=en_us
+setlocal spellfile=~/.config/nvim/spell/en.utf-8.add
+setlocal spellfile+=~/.config/coc/extensions/node_modules/coc-explorer/spell/en.utf-8.add
 filetype plugin indent on
 filetype indent on
 syntax enable
@@ -209,7 +212,7 @@ Plug 'hzchirs/vim-material'
 Plug 'chuling/vim-equinusocio-material'
 Plug 'tpope/vim-unimpaired'
 
-" === Vim oprator and motion
+" === Vim operator and motion
 Plug 'tpope/vim-commentary'
 Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python', {'for' : 'python'}
@@ -222,7 +225,7 @@ Plug 'rbonvall/vim-textobj-latex', {'for' : 'latex'}
 Plug 'mzlogin/vim-markdown-toc', {'for' : 'markdown'}
 Plug 'coachshea/vim-textobj-markdown', {'for' : 'markdown'}
 
-" === Vimwiki
+" === Vim wiki
 Plug 'vimwiki/vimwiki'
 
 " === Rnvimr
@@ -414,7 +417,7 @@ let g:syntastic_check_on_wq = 0
 
 
 " ===
-" === VIMWIKI
+" === VIM WIKI
 " ===
 " let g:vimwiki_list="~/vimwiki/index.wiki"
 nnoremap <SPACE>vw :<C-u>VimwikiIndex<CR>
@@ -425,7 +428,7 @@ nnoremap <SPACE>vn :<C-u>VimwikiMakeDiaryNote<CR>
 nnoremap <SPACE>vt :<C-u>VimwikiTabMakeDiaryNote<CR>
 nnoremap <SPACE>vy :<C-u>VimwikiMakeYesterdayDiaryNote<CR>
 nnoremap <SPACE>vo :<C-u>VimwikiMakeTomorrowDiaryNote<CR>
-" Local noremapping
+" Local nnoremap
 nnoremap <silent><buffer> <SPACE>vh :<C-u>Vimwiki2HTML<CR>
 nnoremap <SPACE>va <Plug>VimwikiToggleListItem
 vnoremap <SPACE>va :VimwikiToggleListItem<CR>
@@ -570,26 +573,26 @@ augroup end
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xnoremap <leader>a  <Plug>(coc-codeaction-selected)
-nnoremap <leader>a  <Plug>(coc-codeaction-selected)
+vmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current line.
-nnoremap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nnoremap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xnoremap if <Plug>(coc-funcobj-i)
-xnoremap af <Plug>(coc-funcobj-a)
-onoremap if <Plug>(coc-funcobj-i)
-onoremap af <Plug>(coc-funcobj-a)
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
 
 " Use <TAB> for selections ranges.
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
 " coc-tsserver, coc-python are the examples of servers that support it.
 " nnoremap <silent> <TAB> <Plug>(coc-range-select)
-xnoremap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
