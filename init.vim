@@ -154,6 +154,9 @@ tnoremap <C-c> <C-\><C-N>:quit<CR>
 nnoremap <SPACE><LEADER> :vsplit<CR>:vertical resize 50<CR>:terminal<CR>
 	\ :startinsert<CR>ls<CR>
 
+" === Move quickly
+nnoremap <leader>/ /" === 
+
 " === Other useful stuff
 nnoremap <LEADER>mp :!python3 %<CR>
 nnoremap <LEADER><LEADER>p :split<CR>:resize 5<CR>:terminal<CR>
@@ -494,7 +497,7 @@ function! OpenPythonProject() abort "{{{
 	:vertical resize 30
 endfunction "}}}
 
-nnoremap <LEADER>r :!python3 %<CR>
+nnoremap <LEADER>r :w<CR>:!python3 %<CR>
 nnoremap <LEADER>. :Defx -columns=mark:indent:icon:filename:type 
 	\ -buffer-name="Python Project"
 	\ -split=vertical
