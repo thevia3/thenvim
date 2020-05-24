@@ -263,7 +263,6 @@ call plug#end()
 nnoremap <SPACE>cp :call ColorschemePapercolor()<CR>
 nnoremap <SPACE>cm :call ColorschemeMaterial()<CR>
 nnoremap <SPACE>ce :call ColorschemeVimequinusociomaterial()<CR>
-nnoremap <SPACE>cl :set background=light<CR>:colorscheme peachpuff<CR>:AirlineTheme papercolor<CR>
 nnoremap <SPACE>cs :set background=dark<CR>:colorscheme snazzy<CR>:AirlineTheme papercolor<CR>
 nnoremap <SPACE>cz :set background=light<CR>:colorscheme zellner<CR>:AirlineTheme xtermlight<CR>
 
