@@ -85,6 +85,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " autocmd FileType vim %foldopen!
 
+
 " === Insert Mode Cursor Movement
 inoremap <M-h> <LEFT>
 inoremap <M-l> <RIGHT>
