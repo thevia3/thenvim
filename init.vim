@@ -61,7 +61,7 @@ if has('persistent_undo')
 	set undodir=~/.config/nvim/tmp/undo,.
 endif
 
-" === Basic Mappings
+" ==i Basic Mappings
 let mapleader=','
 nnoremap ; :
 nnoremap : ;
@@ -83,7 +83,9 @@ nnoremap <SPACE>fd /\(\<\w\+\>\)\_s*\1<CR>
 nnoremap <SPACE>o o<ESC>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-" autocmd FileType vim %foldopen!
+augroup folds
+	autocmd BufEnter *.vim,*.py %foldclose!
+augroup END
 
 
 " === Insert Mode Cursor Movement
