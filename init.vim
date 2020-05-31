@@ -241,7 +241,7 @@ Plug 'kevinhwang91/rnvimr'
 " === Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-syntastic/syntastic'
-Plug 'MaskRay/ccls'
+" Plug 'MaskRay/ccls'
 
 " === Startify
 Plug 'mhinz/vim-startify'
@@ -507,6 +507,7 @@ nnoremap <LEADER>. :Defx -columns=mark:indent:icon:filename:type
 	\ -direction=topleft
 	\ ~/termux/python_100example<CR>
 	\ :vertical resize 30<CR>
+
 
 " ===
 " === COC
