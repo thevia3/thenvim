@@ -123,12 +123,12 @@ nnoremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
 nnoremap sj :set splitbelow<CR>:split<CR>
 nnoremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 nnoremap sl :set splitright<CR>:vsplit<CR>
-nnoremap <up> :res +5<CR>
-nnoremap <down> :res -5<CR>
-nnoremap <left> :vertical resize-5<CR>
+nnoremap <up>    :res +5<CR>
+nnoremap <down>  :res -5<CR>
+nnoremap <left>  :vertical resize-5<CR>
 nnoremap <right> :vertical resize+5<CR>
-nnoremap st <C-w>t<C-w>K
-nnoremap sv <C-w>t<C-w>H
+nnoremap st  <C-w>t<C-w>K
+nnoremap sv  <C-w>t<C-w>H
 nnoremap srh <C-w>b<C-w>K
 nnoremap srv <C-w>b<C-w>H
 nnoremap <SPACE>qh <C-w>h:q<CR>
@@ -136,18 +136,18 @@ nnoremap <SPACE>qj <C-w>j:q<CR>
 nnoremap <SPACE>qk <C-w>k:q<CR>
 nnoremap <SPACE>ql <C-w>l:q<CR>
  
-" === Tab and Buffer management
-nnoremap tu :tabe<CR>
-nnoremap th :-tabnext<CR>
-nnoremap tl :+tabnext<CR>
+" === TAB AND BUFFER MANAGEMENT
+nnoremap tu  :tabe<CR>
+nnoremap th  :-tabnext<CR>
+nnoremap tl  :+tabnext<CR>
 nnoremap tmh :-tabmove<CR>
 nnoremap tml :+tabmove<CR>
 
 nnoremap tbl :ls!<CR>
 nnoremap tbp :buffers<CR>
-nnoremap tn :bn<CR>
-nnoremap tp :bN<CR>
-nnoremap td :bd<CR>
+nnoremap tn  :bn<CR>
+nnoremap tp  :bN<CR>
+nnoremap td  :bd<CR>
 
 " === Nvim-Terminal
 tnoremap <C-,>h <C-\><C-N><C-w>h
@@ -170,7 +170,7 @@ nmap <SPACE>R :call CompileRunCommand()<CR>
 func! CompileRunCommand()
 	echo "Hello world"
 	exec "w"
-	if &filetype == 'c'
+	if &filetype     == 'c'
 		exec "!g++ % -o %<"
 		exec "!time ./%<"
 	elseif &filetype == 'cpp'
@@ -257,6 +257,7 @@ Plug 'jwarby/antovim'
 " Plug 'RRethy/vim-hexokinase'
 Plug 'lervag/vimtex' , {'for': ['latex','tex']}
 Plug 'rhysd/accelerated-jk'
+Plug 'mg979/vim-visual-multi',{'branch':'master'}
 
 call plug#end()
 
@@ -268,7 +269,6 @@ nnoremap <SPACE>cp :call ColorschemePapercolor()<CR>
 nnoremap <SPACE>cm :call ColorschemeMaterial()<CR>
 nnoremap <SPACE>ce :call ColorschemeVimequinusociomaterial()<CR>
 nnoremap <SPACE>cs :set background=dark<CR>:colorscheme snazzy<CR>:AirlineTheme papercolor<CR>
-nnoremap <SPACE>cz :set background=light<CR>:colorscheme zellner<CR>:AirlineTheme xtermlight<CR>
 
 nnoremap <SPACE>cc :set background=dark<CR>:colorscheme dracula<CR>:AirlineTheme solarized_flood<CR>
 set background=dark
@@ -344,24 +344,24 @@ call defx#custom#column('git', 'indicators', {
 	\ })
 
 hi Defx_git_Untracked guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-hi Defx_git_Ignored guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-hi Defx_git_Unknown guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-hi Defx_git_Renamed ctermfg=214 guifg=#fabd2f
+hi Defx_git_Ignored   guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
+hi Defx_git_Unknown   guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
+hi Defx_git_Renamed  ctermfg=214 guifg=#fabd2f
 hi Defx_git_Modified ctermfg=214 guifg=#fabd2f
 hi Defx_git_Unmerged ctermfg=167 guifg=#fb4934
-hi Defx_git_Deleted ctermfg=167 guifg=#fb4934
-hi Defx_git_Staged ctermfg=142 guifg=#b8bb26
+hi Defx_git_Deleted  ctermfg=167 guifg=#fb4934
+hi Defx_git_Staged   ctermfg=142 guifg=#b8bb26
 
 let g:defx_icons_enable_syntax_highlight = 1
-let g:defx_icons_column_length = 2
-let g:defx_icons_directory_icon = ''
-let g:defx_icons_mark_icon = '*'
-let g:defx_icons_copy_icon = ''
-let g:defx_icons_move_icon = ''
-let g:defx_icons_parent_icon = ''
-let g:defx_icons_default_icon = ''
-let g:defx_icons_directory_symlink_icon = ''
-let g:defx_icons_root_opened_tree_icon = ''
+let g:defx_icons_column_length           = 2
+let g:defx_icons_directory_icon          = ''
+let g:defx_icons_mark_icon               = '*'
+let g:defx_icons_copy_icon               = ''
+let g:defx_icons_move_icon               = ''
+let g:defx_icons_parent_icon             = ''
+let g:defx_icons_default_icon            = ''
+let g:defx_icons_directory_symlink_icon  = ''
+let g:defx_icons_root_opened_tree_icon   = ''
 let g:defx_icons_nested_opened_tree_icon = ''
 let g:defx_icons_nested_closed_tree_icon = ''
 
@@ -417,9 +417,9 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_loc_list            = 1
+let g:syntastic_check_on_open            = 1
+let g:syntastic_check_on_wq              = 0
 
 
 " ===
@@ -435,19 +435,19 @@ nnoremap <SPACE>vt :<C-u>VimwikiTabMakeDiaryNote<CR>
 nnoremap <SPACE>vy :<C-u>VimwikiMakeYesterdayDiaryNote<CR>
 nnoremap <SPACE>vo :<C-u>VimwikiMakeTomorrowDiaryNote<CR>
 " Local nnoremap
-nnoremap <silent><buffer> <SPACE>vh :<C-u>Vimwiki2HTML<CR>
-nnoremap <SPACE>va <Plug>VimwikiToggleListItem
-vnoremap <SPACE>va :VimwikiToggleListItem<CR>
+nmap <silent><buffer> <SPACE>vh :<C-u>Vimwiki2HTML<CR>
+nmap <SPACE>va <Plug>VimwikiToggleListItem
+vmap <SPACE>va :VimwikiToggleListItem<CR>
 
 
 " ===
 " === Rnvimr
 " ===
-nnoremap <silent> <M-o> :RnvimrToggle<CR>
-tnoremap <silent> <M-o> <C-\><C-n>:RnvimrToggle<CR>
-tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
-tnoremap <silent> <M-l> <C-\><C-n>:RnvimrResize 1,8,9,13,11,5<CR>
-tnoremap <silent> <M-y> <C-\><C-n>:RnvimrResize 6<CR>
+nnoremap <SILENT> <M-o>           :RnvimrToggle<CR>
+tnoremap <SILENT> <M-o> <C-\><C-n>:RnvimrToggle<CR>
+tnoremap <SILENT> <M-i> <C-\><C-n>:RnvimrResize<CR>
+tnoremap <SILENT> <M-l> <C-\><C-n>:RnvimrResize 1,8,9,13,11,5<CR>
+tnoremap <SILENT> <M-y> <C-\><C-n>:RnvimrResize 6<CR>
 let g:rnvimr_layout = { 'relative': 'editor',
             \ 'width': float2nr(round(0.5 * &columns)),
             \ 'height': float2nr(round(0.5 * &lines)),
@@ -480,8 +480,13 @@ autocmd FileType javascript let g:custom_antovim_definitions = [
 	\   ['this', 'that']
 	\ ]
 nnoremap <SPACE>p :Antovim<CR>
+
 " ### clever-f
 let g:clever_f_ignore_case=1
+
+" ### mg979/vim-visual-multi
+nmap <LEADER>1 V6j\\c
+nmap <LEADER>0 `mV6j\\c
 
 
 " ===
