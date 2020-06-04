@@ -221,6 +221,7 @@ Plug 'tpope/vim-unimpaired'
 
 " === Vim operator and motion
 Plug 'tpope/vim-commentary'
+" Plug 'welle/targets'
 Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python', {'for' : 'python'}
 Plug 'libclang-vim/vim-textobj-clang'
@@ -258,6 +259,8 @@ Plug 'jwarby/antovim'
 Plug 'lervag/vimtex' , {'for': ['latex','tex']}
 Plug 'rhysd/accelerated-jk'
 Plug 'mg979/vim-visual-multi',{'branch':'master'}
+" Fuzzy finder
+Plug 'Yggdroot/LeaderF'
 
 call plug#end()
 
